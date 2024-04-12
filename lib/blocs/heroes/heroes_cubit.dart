@@ -26,14 +26,6 @@ class HeroesCubit extends Cubit<HeroesState> {
     getHeroes();
   }
 
-  Future<void> getHeroes({int offset = 0, int limit = 4}) async {
-    emit(state.copyWith(isLoading: true));
-    var response = await _repository.findAll(
-        limit: limit, offset: offset, search: state.searchController.text);
-    emit(state.copyWith(
-        isLoading: false, paginate: response.result, error: response.error));
-  }
-
   void prevPage() {
     if (state.paginate == null) return;
     if (state.paginate!.offset - 4 >= 0) {
@@ -53,5 +45,13 @@ class HeroesCubit extends Cubit<HeroesState> {
     if ((page - 1) * 4 <= state.paginate!.total) {
       getHeroes(offset: (page - 1) * 4);
     }
+  }
+
+  Future<void> getHeroes({int offset = 0, int limit = 4}) async {
+    emit(state.copyWith(isLoading: true));
+    var response = await _repository.findAll(
+        limit: limit, offset: offset, search: state.searchController.text);
+    emit(state.copyWith(
+        isLoading: false, paginate: response.result, error: response.error));
   }
 }

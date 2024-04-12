@@ -80,6 +80,10 @@ class _HeroesViewState extends State<HeroesView> {
                   }
                   return ListView.builder(
                       itemBuilder: (context, index) => HeroCard(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/details',
+                                  arguments: state.paginate!.results[index]);
+                            },
                             hero: state.paginate!.results[index],
                           ),
                       itemCount: state.paginate!.results.length);
