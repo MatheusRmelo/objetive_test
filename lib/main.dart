@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:objetive_test/constants/marvel_colors.dart';
 import 'package:objetive_test/repositories/characters_repository.dart';
 import 'package:objetive_test/repositories/impl/marvel_characters_repository_impl.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Marvel Heroes',
       theme: ThemeData().copyWith(
           primaryColor: MarvelColors.primary,
+          textTheme: GoogleFonts.robotoTextTheme(),
           colorScheme:
               ThemeData().colorScheme.copyWith(primary: MarvelColors.primary),
           inputDecorationTheme: const InputDecorationTheme(
